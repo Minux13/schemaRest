@@ -1,3 +1,4 @@
+from otherClass.providers import Provider, ProviderList
 from flask import Flask
 from markupsafe import Markup, escape 
 from jinja2 import Template  
@@ -9,8 +10,8 @@ api = Api(app, version='1.0', title='Obras API',
     description='Sistema de Control de Gastos de Obras Publicas',
 )
 
-@api.route('/contratos')
-class Contracts(Resource):
+@api.route('/contracts')
+class ContractList(Resource):
     def get(self):
         """
         Procedure to obtain part of contract list for the pagination
@@ -23,7 +24,7 @@ class Contracts(Resource):
         create_contract(**kwargs)
 
 
-@api.route('/contrato/<int:contract_id>')
+@api.route('/contracts/<int:contract_id>')
 class Contract(Resource):
 
     def get(self, contract_id):
@@ -39,8 +40,8 @@ class Contract(Resource):
         block_contract(contract_id)
 
 
-@api.route('/proyectos')
-class Projects(Resource):
+@api.route('/projects')
+class ProjectList(Resource):
     def get(self):
         """ 
         Procedure to obtain part of project list for the pagination
@@ -53,7 +54,7 @@ class Projects(Resource):
         create_project(**kwargs)
 
 
-@api.route('/proyecto/<int:project_id>')
+@api.route('/projects/<int:project_id>')
 class Project(Resource):
 
     def get(self, project_id):
